@@ -6,7 +6,7 @@ import Login from '../pages/Login';
 import Home from '../pages/Home';
 import SuperLogin from '../pages/SuperLogin';
 import SuperRegister from '../pages/SuperRegister';
-import Unauthorized from '../pages/Unauthorized';
+import UnknownRoute from '../pages/UnknownRoute';
 
 export default function RouteConfig() {
     return(
@@ -15,7 +15,7 @@ export default function RouteConfig() {
             <Route element={<SuperLogin />} path='/super-login' />
             <Route element={<SuperRegister />} path='/register' />
             <Route element={<PrivateRoute><Home /></PrivateRoute>} path='/home' />
-            <Route element={<PrivateRoute><div>ROTA NÃO DISPONÍVEL</div></PrivateRoute>} path='*' />
+            <Route element={<UnknownRoute />} path='*' />
         </Routes>
     )
 }
