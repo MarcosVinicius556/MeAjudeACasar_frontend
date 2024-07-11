@@ -8,8 +8,7 @@ export const LoginFormSchema = z.object({
                .min(1, "Informe o nome de usuário.")
                .max(32, "O nome de usuário não deve ser maior que 32 caractéres."),
     password: z.string()
-               .min(1, "Informe a senha.")
-               .max(512, "A senha não deve ser maior que 512 caractéres."),
+               .min(1, "Informe o código da lista de presentes fornecida pelos noivos."),
 });
 
 /**

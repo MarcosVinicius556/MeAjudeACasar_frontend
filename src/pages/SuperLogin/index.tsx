@@ -1,7 +1,7 @@
 import DefaultPageContent from '../../components/DefaultPageContent';
 import { Link } from 'react-router-dom';
 
-import { LoginCard, LoginPage } from './Login.style';
+import { LoginCard, LoginPage } from './SuperLogin.style';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -11,18 +11,18 @@ import FormErrorMessage from '../../components/FormErrorMessage';
  
 import { useNavigate } from 'react-router-dom';
 
-interface ILogin {
+interface ISuperLogin {
   username: string,
   listCode: string
 }
 
-const Login = () => {
+const SuperLogin = () => {
 
-  const { register, handleSubmit, formState: { errors } } = useForm<ILogin>({ resolver: zodResolver(LoginFormSchema) })
+  const { register, handleSubmit, formState: { errors } } = useForm<ISuperLogin>({ resolver: zodResolver(LoginFormSchema) })
 
   const navigate = useNavigate();
 
-  const handleLogin = (formData: ILogin) => {
+  const handleLogin = (formData: ISuperLogin) => {
     alert("Finge que eu fiz um login vai")
     navigate('/home');
   }
@@ -54,10 +54,14 @@ const Login = () => {
             </span>
           </form>
 
+          <h6>
+            <p>Ainda não possui uma conta? <Link to='/register'>Registre-se</Link></p>
+          </h6>
+
         </LoginCard>
       </LoginPage>
     </DefaultPageContent>
   );
 };
 
-export default Login;
+export default SuperLogin;

@@ -30,4 +30,10 @@ export const MainSection = styled.section`
     width: 100%;
     height: 100%;
     overflow: auto;
+
+    //Test...
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 `;
