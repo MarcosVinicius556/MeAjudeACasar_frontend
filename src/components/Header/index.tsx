@@ -21,7 +21,7 @@ const Header = memo(() =>  {
                         <LinksContainer>
                                 <Nav className="ml-auto">
                                     <Nav.Item>
-                                        <Nav.Link as={Link} to="/user/profile" className="">
+                                        <Nav.Link as={Link} to="/super-login" className="">
                                             <span className="row align-items-center justify-content-center">
                                                 <CiLogin  size={35}/>
                                                 Entrar

@@ -1,17 +1,17 @@
 import { styled } from "styled-components";
 
-export const LoginPage = styled.div`
+export const RegisterPage = styled.div`
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
 `;
 
-export const LoginCard = styled.div`
+export const RegisterCard = styled.div`
 
     max-height: 800px;
     width: 80%;
-    max-width: 500px;
+    max-width: 800px;
 
     display: flex;
     justify-content: center;
@@ -102,20 +102,40 @@ export const LoginCard = styled.div`
                 color:${({ theme }) => theme.colors.base.lightest};
             }
         }
-    }
 
-    & h6 {
-        width: 100%;
-        height: 50px;
-        padding: .5em;
-        & p {
+        & a:last-child {
+            width: 100%;
+            border-radius: 5px;
             text-align: center;
-            font-size: 16px;
+            border: 1px solid ${({ theme }) => theme.colors.base.darker};
+            padding: 10px;
+            padding-left: 30px;
+            outline: none;
+            margin-top: 1.5em;
+            background: ${({ theme }) => theme.colors.commom.error};
+            color: Black;
+            font-size: 18px;
+            transition: all .3s ease-in-out;
 
-            & a {
-                text-decoration: none;
-                color: ${({ theme }) => theme.colors.base.base };
+            &:hover {
+                background: ${({ theme }) => theme.colors.base.darkest};
+                color:${({ theme }) => theme.colors.base.lightest};
             }
         }
+    }
+
+`;
+
+export const CoupleInformation = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+    & div {
+        border: 1px solid ${({ theme }) => theme.colors.base.base};
+        align-self: last baseline;
+        height: 180px;
     }
 `;

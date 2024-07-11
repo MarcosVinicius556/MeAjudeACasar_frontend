@@ -29,5 +29,11 @@ export const theme = {
         base: '#ffd6c1',
         dark: '#ffc8af',
       },
+      commom: {
+        error: '#ff8680',
+        warn: '#fce881',
+        info: '#5ba6fc',
+        success: '#9afc8d',
+      },
     },
   };
