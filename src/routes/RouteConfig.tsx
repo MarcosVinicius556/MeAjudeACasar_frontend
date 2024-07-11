@@ -6,6 +6,7 @@ import Login from '../pages/Login';
 import Home from '../pages/Home';
 import SuperLogin from '../pages/SuperLogin';
 import SuperRegister from '../pages/SuperRegister';
+import Unauthorized from '../pages/Unauthorized';
 
 export default function RouteConfig() {
     return(

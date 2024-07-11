@@ -21,23 +21,24 @@ export const UnauthorizedCard = styled.div`
 
     & a {
         text-decoration: none;
-        width: 300px;
-        height: 40px;
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 25px;
-        border: 1px solid #343434;
+        width: 50%;
+        border-radius: 5px;
+        border: 1px solid ${({ theme }) => theme.colors.base.darker};
         padding: 10px;
+        padding-left: 30px;
         outline: none;
-        background: #343434;
-        color: #fff;
+        margin-top: 1.5em;
+        background: ${({ theme }) => theme.colors.base.base};
+        color: Black;
         font-size: 18px;
         transition: all .3s ease-in-out;
 
         &:hover {
-            background: #e6e6e6;
-            color:#343434;
+            background: ${({ theme }) => theme.colors.base.dark};
+            color:${({ theme }) => theme.colors.base.lightest};
         }
     }
 `;

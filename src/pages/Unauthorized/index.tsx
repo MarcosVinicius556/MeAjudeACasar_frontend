@@ -9,7 +9,7 @@ export default function Unauthorized({ message }: { message: string }) {
             <UnauthorizedCard>
                 <RiUserForbidFill size={200}/>
                 <h1>{message}</h1>
-                <Link to="/">Voltar para a apágina de login</Link>
+                <Link to="/">Voltar para a página de login</Link>
             </UnauthorizedCard>
         </DefaultPageContent>
     )
