@@ -47,19 +47,26 @@ export const Card = styled.article`
         width: 100%;
         height: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
-        flex-direction: column;
+        flex-direction: row;
 
         & button {
             border: none;
             outline: none;
-            width: 150px;
-            height: 50px;
+            width: 120px;
+            height: 40px;
             border-radius: 5px;
             letter-spacing: .5px;
-            background: ${({ theme }) => theme.colors.base.base};
+            background: ${({ theme }) => theme.colors.base.light};
             transition: all .3s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:nth-child(2) {
+                background: ${({ theme }) => theme.colors.base.base};
+            }
 
             & svg {
                 margin-right: 10px;

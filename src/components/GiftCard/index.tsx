@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { Card } from './GiftCard.style';
-import { FaSearch, FaTrash } from 'react-icons/fa';
+import { FaEdit, FaSearch, FaTrash } from 'react-icons/fa';
 
 export interface IGiftCardProps {
     id: number;
@@ -18,6 +18,10 @@ const GiftCard = memo(({ id, name, description, detailsFunction }: IGiftCardProp
           <button onClick={() => detailsFunction(id)}>
             <FaSearch size={17}/>
             Visualizar
+          </button>
+          <button onClick={() => detailsFunction(id)}>
+            <FaEdit size={17}/>
+            Editar
           </button>
         </span>
       </Card>
