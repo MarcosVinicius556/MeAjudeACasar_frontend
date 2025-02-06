@@ -3,80 +3,91 @@ import styled from "styled-components";
 export const Card = styled.article`
     
     margin: 5px;
-
-    width: 300px;
+    border: 1px solid ${({ theme }) => theme.colors.base.light};
+    width: 250px;
     height: 400px;
-    border-radius: 5px;
+    border-radius: 25px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1em;
-    background: #ffff;
-    border: 1px solid ${({ theme }) => theme.colors.base.base};
-
-    -webkit-box-shadow: 0px 0px 3px 3px ${({ theme }) => theme.colors.base.lightest};
-    -moz-box-shadow: 0px 0px 3px 3px ${({ theme }) => theme.colors.base.lightest};
-    box-shadow: 0px 0px 3px 3px ${({ theme }) => theme.colors.base.lightest};
-
-    & h6 {
-        letter-spacing: .5px;
-        line-height: 30px;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+    padding-top: 10px;
+    background: ${({ theme }) => theme.colors.base.lightest};
 
     & img {
-        width: 220px;
-        border-radius: 5px;
+        width: 92%;
+        border-top: 1px solid ${({ theme }) => theme.colors.base.lightest};
+        border-left: 1px solid ${({ theme }) => theme.colors.base.lightest};
+        border-right: 1px solid ${({ theme }) => theme.colors.base.lightest};
+        border-bottom: none;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        background: #ffffff1d;
+
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        border: 1px solid ${({ theme }) => theme.colors.base.base};
+
+        mix-blend-mode: multiply;
     }
 
-    & p {
-        margin-top: 10px;
-        text-align: center;
-        color: #323232;
-    }
+    & div {
 
-    & span {
         width: 100%;
         height: 100%;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        flex-direction: row;
+        padding: 1em;
 
-        & button {
-            border: none;
-            outline: none;
-            width: 120px;
-            height: 40px;
-            border-radius: 5px;
+        border-bottom-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+
+        background: ${({ theme }) => theme.colors.base.light};
+        -webkit-box-shadow: 0px -10px 4px 0px ${({ theme }) => theme.colors.base.light};
+        -moz-box-shadow: 0px -10px 4px 0px ${({ theme }) => theme.colors.base.light};
+        box-shadow: 0px -10px 4px 0px ${({ theme }) => theme.colors.base.light};
+        
+
+        & h6 {
             letter-spacing: .5px;
-            background: ${({ theme }) => theme.colors.base.light};
-            transition: all .3s ease-in-out;
+            font-weight: 500;
+            width: 100%;
             display: flex;
-            justify-content: center;
-            align-items: center;
-
-            &:nth-child(2) {
-                background: ${({ theme }) => theme.colors.base.base};
-            }
-
-            & svg {
-                margin-right: 10px;
-            }
-
-            &:hover {
-                background: ${({ theme }) => theme.colors.base.dark};
-                color: ${({ theme }) => theme.colors.base.lightest};
-            }
-
         }
+
+        & p {
+            color: #323232;
+            text-align: start;
+            font-size: 14px;
+        }
+
+        & span {
+            width: 100%;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            flex-direction: row;
+
+            & button {
+                border: 1px solid ${({ theme }) => theme.colors.base.light};
+                outline: none;
+                width: 90px;
+                height: 30px;
+                border-radius: 25px;
+                letter-spacing: .5px;
+                font-size: 14px;
+                transition: all .3s ease-in-out;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                background: rgb(255,207,214);
+
+                &:hover {
+                    background: ${({ theme }) => theme.colors.base.dark};
+                    color: ${({ theme }) => theme.colors.base.lightest};
+                }
+
+            }
+        }
+
     }
 `;
