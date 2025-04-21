@@ -7,6 +7,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import SignUpSchema from '../../validations/SignUpZodSchema';
 
+import './signup.css'
+
 function SignUp() {
     
     const{register, handleSubmit, formState: { errors } } = useForm({
@@ -34,7 +36,7 @@ function SignUp() {
     return(
         <div className='container-center'>
             <div className="login">
-                <div className='left-side'>
+                <div id="signup" className='left-side'>
                     <div className='introduction'>
                         <h2>Olá, Seja Bem Vindo ao <span>Me Ajude A Casar</ span></h2>
                         <br />

@@ -211,7 +211,7 @@ function handlePurchaseItem(gift) {
               <div className="gifts-container">
                 {gifts.map((gift, index) => {
                       return (
-                        <div className='card' key={gift.name}>
+                        <div className='card' key={gift.id}>
                           <div className='card-title' >
                             <span># {gift.name}</span>
                           </div>

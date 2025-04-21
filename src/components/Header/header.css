@@ -77,6 +77,7 @@
         display: flex;
         justify-content: space-between;
         bottom: 0;
+        
     }
 
     div.content {
@@ -84,6 +85,8 @@
         height: 90vh;
         overflow: scroll;
         padding: 1px 16px;
+
+        padding-bottom: 80px;
     }
 
     .sidebar a {
@@ -98,6 +101,15 @@
 
     .sidebar a:nth-child(3) {
         border-left: 1px solid rgb(107, 107, 107);
+        border-right: 1px solid rgb(107, 107, 107);
+    }
+
+    .sidebar a:nth-child(5) {
+        border-left: 1px solid rgb(107, 107, 107);
+        border-right: 1px solid rgb(107, 107, 107);
+    }
+
+    .sidebar a:nth-child(6) {
         border-right: 1px solid rgb(107, 107, 107);
     }
 
