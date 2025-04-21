@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+:root {
+    --dark-background: #252525;
+    --middle-background: #2e2e38;
+    
+    --purple-buttom: #734ac0;
+    --purple-buttom-hover: #5d3c9b;
+    
+    --dark-button: #181c2e;
+    --dark-button-hover: #494949;
+
+    --light-text-color: #f8f8f8;
+  }
+
 * {
     padding: 0;
     margin: 0;

@@ -1,7 +1,7 @@
-import './modal.css';
+import './modal_v2.css';
 import { FiX } from 'react-icons/fi';
 
-export default function Modal({ content, close }) {
+export default function ModalV2({ content, close }) {
     return(
         <div className='modal'>
             <div className='container'>
@@ -11,13 +11,17 @@ export default function Modal({ content, close }) {
                 </button>
 
                 <main>
-                    <h2>Detalhes do presente</h2>
-                    <div className='image-container'>
-                        <input type='image' disabled={true} src={content.url_img} alt="Imagem ilustrativa do produto desejado" />
+                    <div className='card' key={content.name}>
+                        <div className='card-title' >
+                            <span># {content.name}</span>
+                        </div>
+                        <div className='card-top' >
+                            <img src={content.url_img} alt="" />
+                        </div>
                     </div>
                     
                     <div className="row">
-                        <span>Nome: <i>{content.name}</i></span>
+                            <span>Nome: <i>{content.name}</i></span>
                     </div>
 
                     <div className="row">
@@ -33,9 +37,7 @@ export default function Modal({ content, close }) {
                                     {content.status}
                         </span>
                     </div>
-                    
                 </main>
-
             </div>
         </div>
     )

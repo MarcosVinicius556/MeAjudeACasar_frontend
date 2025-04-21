@@ -1,0 +1,64 @@
+.report-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.report-header {
+    border-bottom: 1px solid gray;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding: 15px;
+    width: 100%;
+}
+
+.report-header img {
+    position: absolute;
+    left: 55px;
+    width: 82px;
+}
+
+.report-header h1 {
+    font-family: "Dancing Script", cursive;
+    text-align: center;
+}
+
+.report-content {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    background-color: transparent;
+  }
+
+.report-table tbody tr:nth-child(even) {
+    background-color: #d8d7d7;
+}
+
+.report-table th,
+.report-table td {
+  padding: 12px 15px;
+}
+
+.report-table td span {
+    border-radius: 10px;
+    padding: 5px;
+    font-weight: bold;
+    height: 30px;
+    color: #353535;
+}
+
+.report-footer {
+    border-top: 1px solid gray;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

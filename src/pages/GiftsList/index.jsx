@@ -1,25 +1,22 @@
-import './dashboard.css'
 import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../contexts/auth'
 
 import Header from '../../components/Header'
 import Title from '../../components/Title'
 import { FiPlus, FiMessageSquare, FiSearch, FiEdit2 } from 'react-icons/fi'
-import { FaEye, FaEyeSlash } from 'react-icons/fa'
-import { MdOutlineShoppingBag } from 'react-icons/md'
 
 import { Link } from 'react-router-dom'
 import { collection, getDocs, orderBy, where, limit, startAfter, query} from 'firebase/firestore'
 import { db } from '../../services/firebaseConnection'
 
-import ModalV2 from '../../components/ModalV2';
+import Modal from '../../components/Modal';
 
+import './giftList.css'
 import formatDate from '../../utils/DateFormatter'
-import Swal from 'sweetalert2'
 
 const listRef = collection(db, "gifts")
 
-export default function GiftsDashboard(){
+export default function GiftsList(){
   const { user } = useContext(AuthContext);
 
   const [gifts, setGifts] = useState([]);
@@ -104,60 +101,11 @@ export default function GiftsDashboard(){
     await updateState(querySnapshot);
   }
 
-  function handleToggleModal(item) {
+  function toggleModal(item) {
     console.log(item)
     setDetail(item);
     setShowPostModal(!showPostModal);
   }
-
-function handleObserveItem(gift) {
-  if(gift.status === 'OBSERVADO') {
-    Swal.fire({
-      icon: "question",
-      title: "Este item está marcado como observado, ao desmarca-lo aparecerá como disponível para todos, deseja prosseguir?",
-      showDenyButton: true,
-      confirmButtonText: "Sim",
-      denyButtonText: `Não`
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("Ebaa, agora este item está marcado como monitorado por você! ", "", "success");
-      } else if (result.isDenied) {
-        //Tratativa?
-      }
-    });
-  } else {
-    Swal.fire({
-      icon: "question",
-      title: "Deseja colocar este item em observação?",
-      showDenyButton: true,
-      confirmButtonText: "Sim",
-      denyButtonText: `Não`
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("Ebaa, agora este item está marcado como monitorado por você! ", "", "success");
-      } else if (result.isDenied) {
-        //Tratativa?
-      }
-    });
-  }
-}
-
-function handlePurchaseItem(gift) {
-  Swal.fire({
-    title: `Deseja marcar este item como comprado? Se você confirmar,
-            entenderemos que este item foi comprado por você e ele irá
-            sair da lista dos demais usuários.`,
-    showDenyButton: true,
-    confirmButtonText: "Sim",
-    denyButtonText: `Não`
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire("Ebaa, agora este item está marcado como monitorado por você! ", "", "success");
-    } else if (result.isDenied) {
-      //Tratativa?
-    }
-  });
-}
 
 
   if(loading){
@@ -208,47 +156,43 @@ function handlePurchaseItem(gift) {
               </Link>  
             }
 
-              <div className="gifts-container">
-                {gifts.map((gift, index) => {
-                      return (
-                        <div className='card' key={gift.name}>
-                          <div className='card-title' >
-                            <span># {gift.name}</span>
-                          </div>
-                          <div className='card-top' >
-                            <img src={gift.url_img} alt="" />
-                          </div>
-                          <div className='card-bottom' >
-                            <ul>
-                              <li 
-                                onClick={() => handleToggleModal(gift)}>
-                                <FiPlus size={20}/>
-                              </li>
-
-                              <li 
-                                style={{ background: `${gift.status !== 'DISPONIVEL' ? '#fa9595' : '' }` }} 
-                                onClick={() => handleObserveItem(gift)}>
-                                {gift.status === 'DISPONIVEL' 
-                                  ? <FaEye size={20}/>
-                                  : <FaEyeSlash size={20}/>
-                                }
-                              </li>
-
-                              <li 
-                                onClick={() => handlePurchaseItem(gift)}>
-                                  <MdOutlineShoppingBag size={20}/>
-                              </li>
-                            </ul>
-                          </div>
-
-                        </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Média de Valores</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {gifts.map((gift, index) => {
+                    return (
+                        <tr key={index}>
+                          <td data-label="name">{gift.name}</td>
+                          <td data-label="description">{gift.description}</td>
+                          <td data-label="average_values">R$ {gift.average_values}</td>
+                          <td data-label="status">
+                            <span className="badge" style={{ backgroundColor: gift.status === 'DISPONIVEL' ? '#5cB85c' : '#999' }}>
+                              {gift.status}
+                            </span>
+                          </td>
+                          <td className="action-column" data-label="">
+                            <button className="action" onClick={(e) => toggleModal(gift)} style={{ backgroundColor: '#734ac0' }}>
+                              Detalhes 
+                            </button>
+                            {user.role === "ADMIN" && 
+                              <Link to={`/gifts/new/${gift.id}`} onClick={() => toggleModal(gift)} className="action" style={{ backgroundColor: '#a28dca' }}>
+                                Editar 
+                              </Link>
+                            }
+                          </td>
+                        </tr>
                       )
-                    }
-                  )
-                }
-              </div>
-
-              
+                  })}
+                </tbody>
+              </table>        
 
 
               {loadingMore && <h3>Buscando mais presentes...</h3>}
@@ -259,7 +203,7 @@ function handlePurchaseItem(gift) {
       </div>
     
     {showPostModal && ( 
-      <ModalV2 
+      <Modal 
         content={detail}
         close={() => setShowPostModal(!showPostModal)}
       /> 
