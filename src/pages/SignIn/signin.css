@@ -132,3 +132,20 @@ form button:hover {
 .login a:hover {
     color: #5d3c9b;
 }
+
+@media screen and (max-width: 600px) {
+ 
+    .login {
+        flex-direction: column;
+    }
+
+    .left-side {
+        display: flex !important;
+        max-height: 300px;
+    }
+
+    .login-area img {
+        display: none;
+    }
+    
+}
