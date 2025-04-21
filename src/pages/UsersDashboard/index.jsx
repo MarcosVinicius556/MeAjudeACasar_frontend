@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import './usersDashboard.css';
 
-import { format } from 'date-fns';
+import { useEffect, useState } from 'react';
 
 import Header from '../../components/Header';
 import Title from '../../components/Title';
@@ -16,7 +16,6 @@ import {
 
 import { db } from '../../services/firebaseConnection';
 
-import './dashboard.css';
 import formatDate from '../../utils/DateFormatter';
 
 const listRef = collection(db, "users")

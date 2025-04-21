@@ -1,12 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 
 import GiftsDashboard from "../pages/GiftsDashboard";
+import GiftsList from "../pages/GiftsList";
 import UsersDashboard from "../pages/UsersDashboard";
 import GiftsRegister from "../pages/GiftRegister";
 import Profile from "../pages/Profile";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import Private from "./Private";
+import PrintComponent from "../components/Report";
 
 function RoutesApp() {
     return(
@@ -16,6 +18,7 @@ function RoutesApp() {
 
             {/**Rotas privada */}
             <Route path="/gifts/dashboard" element={<Private> <GiftsDashboard /> </Private>} />
+            <Route path="/gifts/list" element={<Private> <GiftsList /> </Private>} />
             <Route path="/users/dashboard" element={<Private> <UsersDashboard /> </Private>} />
             <Route path="/profile" element={<Private> <Profile /> </Private>} />
             <Route path="/gifts/new" element={<Private> <GiftsRegister /> </Private>} />

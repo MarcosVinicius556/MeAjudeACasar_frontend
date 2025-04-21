@@ -2,7 +2,7 @@
     width: 200px;
     margin: 0;
     padding: 0;
-    background: #181c2e;
+    background: var(--dark-background);
     position: fixed;
     height: 100%;
     overflow: auto;
@@ -47,7 +47,7 @@
 }
 
 .sidebar a:hover {
-    background: #121212;
+    background: var(--middle-background);
     color: #fff;
 }
 

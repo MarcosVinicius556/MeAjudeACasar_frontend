@@ -1,3 +1,13 @@
+.modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 99;
+}
+
 .image-container {
     width: 100%;
     margin-bottom: 10px;
@@ -14,6 +24,8 @@ input[type="image"] {
 }
 
 .modal .container {
+    border-radius: 8px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
     position: fixed;
     max-width: 600px;
     top: 15%;
@@ -21,12 +33,12 @@ input[type="image"] {
     right: 0;
     margin: 0 auto; /*Margem de 0 em cima e em baixo e auto nas laterais*/
     padding: 4em 2em;
-    background: #fff;
+
     box-shadow: 0 0 20px rgba(0,0,0, .8);
 }
 
 .close {
-    background: #f65835;
+    background: #dd6c52;
     border: 0;
     border-radius: 5px;
     position: absolute;
@@ -60,8 +72,10 @@ input[type="image"] {
 }
 
 .row {
+    font-family: "Dancing Script", cursive;
     margin-bottom: 1em;
 }
+
 
 .row p {
     padding-top: .5em;
