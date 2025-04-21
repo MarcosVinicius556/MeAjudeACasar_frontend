@@ -91,7 +91,7 @@ table td .badge {
     background: #494949;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1100px) {
     table {
         border: 0;
     }
