@@ -89,11 +89,13 @@ function Header() {
                     <span>Presentes</span>
             </Link>
 
-            <Link to="/gifts/list">
-                    <BsListColumns  color='#fff' size={24} />
-                    <span>Presentes / Lista</span>
-            </Link>
-            {/* Fazer valição para só aparecer caso seja super usuário */}
+            {user.role === "ADMIN" &&
+                <Link to="/gifts/list">
+                        <BsListColumns  color='#fff' size={24} />
+                        <span>Presentes / Lista</span>
+                </Link>
+            }
+
             {user.role === "ADMIN" &&
                 <Link to="/users/dashboard">
                         <FiUser color='#fff' size={24} />

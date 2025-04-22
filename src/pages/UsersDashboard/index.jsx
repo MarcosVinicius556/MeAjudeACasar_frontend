@@ -1,5 +1,3 @@
-import './usersDashboard.css';
-
 import { useEffect, useState } from 'react';
 
 import Header from '../../components/Header';
