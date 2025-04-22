@@ -36,7 +36,7 @@ export default function GiftsList(){
 
       q = user.role === "ADMIN" 
         ? query(listRef, orderBy('created_at', 'desc'), limit(5)) //SuperUser must see all
-        : query(listRef, where("status", "!=", "INDISPONIVEL"), orderBy('created_at', 'desc'), limit(5));
+        : query(listRef, where("status", "!=", "INDISPONIVEL"), orderBy('status', 'desc', 'created_at', 'desc'), limit(5));
 
       const querySnapshot = await getDocs(q)
       setGifts([]);
