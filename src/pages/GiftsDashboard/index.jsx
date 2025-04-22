@@ -39,7 +39,7 @@ export default function GiftsDashboard(){
 
       q = user.role === "ADMIN" 
         ? query(listRef, orderBy('created_at', 'desc'), limit(5)) //SuperUser must see all
-        : query(listRef, where("status", "!=", "INDISPONIVEL"), orderBy('created_at', 'desc'), limit(5));
+        : query(listRef, where("status", "!=", "INDISPONIVEL"), orderBy('status', 'desc', 'created_at', 'desc'), limit(5));
 
       const querySnapshot = await getDocs(q)
       setGifts([]);
@@ -221,11 +221,13 @@ function handlePurchaseItem(gift) {
                           <div className='card-bottom' >
                             <ul>
                               <li 
-                                onClick={() => handleToggleModal(gift)}>
+                                onClick={() => handleToggleModal(gift)}
+                                className='gift-detail-button'>
                                 <FiPlus size={20}/>
                               </li>
 
                               <li 
+                              className='gift-status-icons'
                                 style={{ background: `${gift.status !== 'DISPONIVEL' ? '#fa9595' : '' }` }} 
                                 onClick={() => handleObserveItem(gift)}>
                                 {gift.status === 'DISPONIVEL' 
@@ -235,6 +237,7 @@ function handlePurchaseItem(gift) {
                               </li>
 
                               <li 
+                                className='gift-purchase-button'
                                 onClick={() => handlePurchaseItem(gift)}>
                                   <MdOutlineShoppingBag size={20}/>
                               </li>
