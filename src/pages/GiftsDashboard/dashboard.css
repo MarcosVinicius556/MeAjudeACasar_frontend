@@ -60,7 +60,7 @@
     
 .card {
     width: 280px;
-    height: 253px;
+    height: 273px;
     padding: 10px;
     margin: 20px;
     background: #fff;
@@ -72,6 +72,7 @@
 }
 
 .card-title {
+    height: 35px;
     text-align: start;
     margin-bottom: 8px;
     font-size: 19px;
