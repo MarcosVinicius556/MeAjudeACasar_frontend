@@ -15,7 +15,12 @@ import { db } from '../../services/firebaseConnection'
 import ModalV2 from '../../components/ModalV2';
 
 import formatDate from '../../utils/DateFormatter'
-import Swal from 'sweetalert2'
+
+import { 
+  loadAllGifts, 
+  markAsObservedItem, 
+  markAsPurchasedItem, 
+  unmarkAsObservedItem } from '../../services/GiftsService'
 
 const listRef = collection(db, "gifts")
 
@@ -34,28 +39,23 @@ export default function GiftsDashboard(){
 
 
   useEffect(() => {
-    async function loadGifts(){
-      let q;
-
-      q = user.role === "ADMIN" 
-        ? query(listRef, orderBy('created_at', 'desc'), limit(5)) //SuperUser must see all
-        : query(listRef, where("status", "!=", "INDISPONIVEL"), orderBy('status', 'desc', 'created_at', 'desc'), limit(5));
-
-      const querySnapshot = await getDocs(q)
-      setGifts([]);
-
-      await updateState(querySnapshot)
-
-      setLoading(false);
-
-    }
+    setLoading(true);
 
     loadGifts();
-
 
     return () => { }
   }, [])
 
+  async function loadGifts(){
+    
+    setGifts([])
+    const querySnapshot = await loadAllGifts(user, listRef);
+
+    await updateState(querySnapshot)
+
+    setLoading(false);
+
+  }
 
   async function updateState(querySnapshot){
     const isCollectionEmpty = querySnapshot.size === 0;
@@ -71,6 +71,7 @@ export default function GiftsDashboard(){
           url_img: doc.data().url_img,
           status: doc.data().status,
           average_values: doc.data().average_values,
+          wanted_by: doc.data().wanted_by,
           created_at: doc.data().created_at,
           created_at_format: formatDate(doc.data().created_at),
           where_to_buy: doc.data().where_to_buy,
@@ -98,7 +99,7 @@ export default function GiftsDashboard(){
 
     q = user.role === "ADMIN" 
         ? query(listRef, orderBy('name', 'desc'), startAfter(lastDocs), limit(5))
-        : query(listRef, where("status", "!=", "INDISPONIVEL"), startAfter(lastDocs), limit(5));
+        : query(listRef, where("status", "!=", "COMPRADO"), startAfter(lastDocs), limit(5));
 
     const querySnapshot = await getDocs(q);
     await updateState(querySnapshot);
@@ -110,53 +111,19 @@ export default function GiftsDashboard(){
     setShowPostModal(!showPostModal);
   }
 
-function handleObserveItem(gift) {
+async function handleObserveItem(gift) {
   if(gift.status === 'OBSERVADO') {
-    Swal.fire({
-      icon: "question",
-      title: "Este item está marcado como observado, ao desmarca-lo aparecerá como disponível para todos, deseja prosseguir?",
-      showDenyButton: true,
-      confirmButtonText: "Sim",
-      denyButtonText: `Não`
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("Ebaa, agora este item está marcado como monitorado por você! ", "", "success");
-      } else if (result.isDenied) {
-        //Tratativa?
-      }
-    });
+    await unmarkAsObservedItem(gift, user.name)
   } else {
-    Swal.fire({
-      icon: "question",
-      title: "Deseja colocar este item em observação?",
-      showDenyButton: true,
-      confirmButtonText: "Sim",
-      denyButtonText: `Não`
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("Ebaa, agora este item está marcado como monitorado por você! ", "", "success");
-      } else if (result.isDenied) {
-        //Tratativa?
-      }
-    });
+    await markAsObservedItem(gift, user.name)
   }
+
+  await loadGifts();
 }
 
-function handlePurchaseItem(gift) {
-  Swal.fire({
-    title: `Deseja marcar este item como comprado? Se você confirmar,
-            entenderemos que este item foi comprado por você e ele irá
-            sair da lista dos demais usuários.`,
-    showDenyButton: true,
-    confirmButtonText: "Sim",
-    denyButtonText: `Não`
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire("Ebaa, agora este item está marcado como monitorado por você! ", "", "success");
-    } else if (result.isDenied) {
-      //Tratativa?
-    }
-  });
+async function handlePurchaseItem(gift) {
+  await markAsPurchasedItem(gift, user.name);
+  await loadGifts();
 }
 
 
@@ -211,7 +178,7 @@ function handlePurchaseItem(gift) {
               <div className="gifts-container">
                 {gifts.map((gift, index) => {
                       return (
-                        <div className='card' key={gift.id}>
+                        <div className='card' key={gift.id + index}>
                           <div className='card-title' >
                             <span># {gift.name}</span>
                           </div>
